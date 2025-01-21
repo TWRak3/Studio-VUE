@@ -4,7 +4,7 @@
       <h1>Form function</h1>
       <div class="">
         <label for="user-name">Your Name</label>
-        <input id="user-name" name="user-name" type="text" v-model="userName" />
+        <input id="user-name" name="user-name" type="text" v-model="userName" />     <!-- "for" e "id" devono essere uguali se no "for" non avrà nessuna funzione -->
       </div>
       <div class="">
         <label for="user-age">Your Age (Years)</label>
