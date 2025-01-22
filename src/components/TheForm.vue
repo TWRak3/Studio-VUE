@@ -21,35 +21,35 @@
       <div class="">
         <h2>What are you interested in?</h2>
         <div>
-          <input id="what" name="what" type="checkbox" value="news" v-model="what" />
-          <label for="what">News</label>
+          <input id="news" name="what" type="checkbox" value="news" v-model="what" />
+          <label for="news">News</label>
         </div>
         <div>
-          <input id="what" name="what" type="checkbox" value="tutorials" v-model="what" />
-          <label for="what">Tutorials</label>
+          <input id="tutorials" name="what" type="checkbox" value="tutorials" v-model="what" />
+          <label for="tutorials">Tutorials</label>
         </div>
         <div>
-          <input id="what" name="what" type="checkbox" value="gaming" v-model="what" />
-          <label for="what">Gaming</label>
+          <input id="gaming" name="what" type="checkbox" value="gaming" v-model="what" />
+          <label for="gaming">Gaming</label>
         </div>
       </div>
       <div class="">
         <h2>How do you learn?</h2>
         <div>
-          <input id="learn" name="learn" type="radio" value="video" v-model="learn" />
-          <label for="learn">Video Courses</label>
+          <input id="video-courses" name="learn" type="radio" value="video" v-model="learn" />
+          <label for="video-courses">Video Courses</label>
         </div>
         <div>
-          <input id="learn" name="learn" type="radio" value="blogs" v-model="learn" />
-          <label for="learn">Blogs</label>
+          <input id="blogs" name="learn" type="radio" value="blogs" v-model="learn" />
+          <label for="blogs">Blogs</label>
         </div>
         <div>
-          <input id="learn" name="learn" type="radio" value="other" v-model="learn" />
-          <label for="learn">Other</label>
+          <input id="other" name="learn" type="radio" value="other" v-model="learn" />
+          <label for="other">Other</label>
         </div>
       </div>
       <div>
-        <button>Save Data</button>
+        <button @click="showError" >Save Data</button>
       </div>
     </div>
   </form>
@@ -59,6 +59,7 @@
 export default {
   data() {
     return {
+      errorMessage: '',
       userName: '',
       userAge: '',
       information: '',
@@ -78,6 +79,37 @@ export default {
       this.what = [];
       console.log('How do you learn: ' + this.learn);
       this.learn = [];
+    },
+    confirmForm(){
+      console.log('Username: ' + this.userName);
+      this.userName = '';
+      console.log('User age: ' + this.userAge);
+      this.userAge = '';
+      console.log('Information: ' + this.information);
+      this.information = '';
+      console.log('What are you interested in: ' + this.what);
+      this.what = [];
+      console.log('How do you learn: ' + this.learn);
+      this.learn = [];
+    },
+    showError() {
+      if (this.userName === '' || this.userAge === '' || this.information === '' || this.what === '' || this.learn === '' ) {
+        alert("Please compile the module!")
+        this.submitForm="";
+      } else {
+        this.confirmForm();
+      }
+      /*if (this.userName === '' || this.userAge === '' || this.information === '' || this.what === '' || this.learn === '' ) {
+        alert("Please compile the module!")
+        this.submitForm="";
+        if (this.submitForm) {
+          this.submitForm();
+        } else {
+          this.submitForm=false;
+        }
+      } else {
+        alert("Data saved successfully!")
+      }*/
     }
   }
 }
