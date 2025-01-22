@@ -34,6 +34,7 @@
           is-favorite="0"
       ></friend-list>
     </ul>
+    <modal-dialog></modal-dialog>
   </div>
 </template>
 
