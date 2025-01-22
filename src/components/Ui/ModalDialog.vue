@@ -1,34 +1,36 @@
 <template>
-  <div class="container">
-    <h1>Registration</h1>
-    <div>
-      <button @click="registerButton = true" class="open-modal-btn">Register</button>
-      <div v-if="registerButton" class="overlay">
-        <div class="modal">
-          <h2>Enter your details</h2>
-          <form @submit.prevent>
-            <label for="name">Your name</label>
-            <input id=name type="text" v-model.trim="formData.name" required />
-            <label for="email">Your email</label>
-            <input id="email" type="text" v-model.trim="formData.email"  required />
-            <label for="password">Your password</label>
-            <input id="password" type="password" v-model.trim="formData.password" required />
-            <div class="form-buttons">
-              <button @click="submitButton">Register</button>
-              <button @click="closeButton">Close</button>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="container">
+        <button @click="isModalVisible = true" class="open-modal-btn">Register</button>
     </div>
-  </div>
+
+    <Dialog v-model:visible="isModalVisible" dismissable-mask modal header="Enter your details" :style="{ width: '25rem' }">
+        <div class="flex align-items-center gap-3 mb-3">
+            <div>
+                <label for="name">Your name</label>
+                <input id=name type="text" v-model.trim="formData.name" required />
+                <label for="email">Your email</label>
+                <input id="email" type="text" v-model.trim="formData.email"  required />
+                <label for="password">Your password</label>
+                <input id="password" type="password" v-model.trim="formData.password" required />
+            </div>
+        </div>
+
+        <div class="flex justify-content-end gap-2">
+            <div class="form-buttons">
+                <button @click="submitButton">Register</button>
+                <button @click="closeButton">Close</button>
+                <button @click="clearFields">PULISCI</button>
+            </div>
+        </div>
+
+    </Dialog>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      registerButton: false,
+      isModalVisible: false,
       formData: {
         name: "",
         email: "",
@@ -37,8 +39,15 @@ export default {
     }
   },
   methods: {
+	  clearFields() {
+		 for(const [key,val] of Object.entries(this.formData)) {
+             this.formData[key] = null;
+         }
+		  console.log(this.formData)
+
+	  },
     closeButton() {
-      this.registerButton = false;
+      this.isModalVisible = false;
     },
     submitButton() {
       if (this.formData.name === "" || this.formData.email === "" || this.formData.password === "") {
@@ -53,41 +62,6 @@ export default {
 </script>
 
 <style scoped>
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 400px;
-  animation: fadeIn 0.3s ease-in-out;
-}
-.modal h2 {
-  margin-top: 0;
-}
-.modal label {
-  display: block;
-  margin: 10px 0 5px;
-}
-.modal input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 .form-buttons {
   display: flex;
   justify-content: space-between;
@@ -105,6 +79,9 @@ button {
 }
 button:hover {
   background-color: #388e3c;
+}
+button:active {
+    background-color: #27642a;
 }
 .open-modal-btn {
   padding: 10px 20px;

@@ -4,7 +4,7 @@
     <p>Counter: {{ counter }}</p>
     <button @click="add(1)">Add</button>
     <button id="secondary" @click="reduce(1)">Reduce</button>
-    <Checkbox v-model="checked" :binary="true" />
+    <Checkbox :invalid="!checked" v-model="checked" :binary="true" />
   </div>
 </template>
 
@@ -12,8 +12,9 @@
 export default {
   data() {
     return {
+      checked: false,
       counter: 0,
-    }
+    };
   },
   methods: {
     add(num) {
@@ -27,8 +28,8 @@ export default {
       if (this.counter < 0) {
         this.counter = 0;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -45,10 +46,12 @@ export default {
 }
 h1 {
   font-size: 1.8rem;
-  color: #4CAF50;
+  color: #4caf50;
   margin-bottom: 20px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 h1:hover {
   color: #388e3c;
@@ -56,7 +59,7 @@ h1:hover {
 }
 button {
   margin-right: 15px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 10px 20px;

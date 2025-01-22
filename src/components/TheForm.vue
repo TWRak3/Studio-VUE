@@ -1,10 +1,11 @@
 <template>
-  <form @submit.prevent="submitForm">
+  <form @submit.prevent="onSubmit" id="the-form">
     <div class="container">
       <h1>Form function</h1>
       <div class="">
         <label for="user-name">Your Name</label>
-        <input id="user-name" name="user-name" type="text" v-model="userName" />     <!-- "for" e "id" devono essere uguali se no "for" non avrà nessuna funzione -->
+        <input id="user-name" name="user-name" type="text" v-model="userName" />
+        <!-- "for" e "id" devono essere uguali se no "for" non avrà nessuna funzione -->
       </div>
       <div class="">
         <label for="user-age">Your Age (Years)</label>
@@ -21,35 +22,71 @@
       <div class="">
         <h2>What are you interested in?</h2>
         <div>
-          <input id="news" name="what" type="checkbox" value="news" v-model="what" />
+          <input
+            id="news"
+            name="what"
+            type="checkbox"
+            value="news"
+            v-model="what"
+          />
           <label for="news">News</label>
         </div>
         <div>
-          <input id="tutorials" name="what" type="checkbox" value="tutorials" v-model="what" />
+          <input
+            id="tutorials"
+            name="what"
+            type="checkbox"
+            value="tutorials"
+            v-model="what"
+          />
           <label for="tutorials">Tutorials</label>
         </div>
         <div>
-          <input id="gaming" name="what" type="checkbox" value="gaming" v-model="what" />
+          <input
+            id="gaming"
+            name="what"
+            type="checkbox"
+            value="gaming"
+            v-model="what"
+          />
           <label for="gaming">Gaming</label>
         </div>
       </div>
       <div class="">
         <h2>How do you learn?</h2>
         <div>
-          <input id="video-courses" name="learn" type="radio" value="video" v-model="learn" />
+          <input
+            id="video-courses"
+            name="learn"
+            type="radio"
+            value="video"
+            v-model="learn"
+          />
           <label for="video-courses">Video Courses</label>
         </div>
         <div>
-          <input id="blogs" name="learn" type="radio" value="blogs" v-model="learn" />
+          <input
+            id="blogs"
+            name="learn"
+            type="radio"
+            value="blogs"
+            v-model="learn"
+          />
           <label for="blogs">Blogs</label>
         </div>
         <div>
-          <input id="other" name="learn" type="radio" value="other" v-model="learn" />
+          <input
+            id="other"
+            name="learn"
+            type="radio"
+            value="other"
+            v-model="learn"
+          />
           <label for="other">Other</label>
         </div>
       </div>
       <div>
-        <button @click="showError" >Save Data</button>
+        <button>Save Data</button>
       </div>
     </div>
   </form>
@@ -59,60 +96,43 @@
 export default {
   data() {
     return {
-      errorMessage: '',
-      userName: '',
-      userAge: '',
-      information: '',
+      errorMessage: "",
+      userName: "",
+      userAge: "",
+      information: "",
       what: [],
       learn: [],
-    }
+    };
   },
   methods: {
-    submitForm() {
-      console.log('Username: ' + this.userName);
-      this.userName = '';
-      console.log('User age: ' + this.userAge);
-      this.userAge = '';
-      console.log('Information: ' + this.information);
-      this.information = '';
-      console.log('What are you interested in: ' + this.what);
+    confirmForm() {
+      console.log("Username: " + this.userName);
+      this.userName = "";
+      console.log("User age: " + this.userAge);
+      this.userAge = "";
+      console.log("Information: " + this.information);
+      this.information = "";
+      console.log("What are you interested in: " + this.what);
       this.what = [];
-      console.log('How do you learn: ' + this.learn);
+      console.log("How do you learn: " + this.learn);
       this.learn = [];
     },
-    confirmForm(){
-      console.log('Username: ' + this.userName);
-      this.userName = '';
-      console.log('User age: ' + this.userAge);
-      this.userAge = '';
-      console.log('Information: ' + this.information);
-      this.information = '';
-      console.log('What are you interested in: ' + this.what);
-      this.what = [];
-      console.log('How do you learn: ' + this.learn);
-      this.learn = [];
-    },
-    showError() {
-      if (this.userName === '' || this.userAge === '' || this.information === '' || this.what === '' || this.learn === '' ) {
-        alert("Please compile the module!")
-        this.submitForm="";
+    onSubmit() {
+      if (
+        this.userName === "" ||
+        this.userAge === "" ||
+        this.information === "" ||
+        this.what === "" ||
+        this.learn === ""
+      ) {
+        alert("Please compile the module!");
       } else {
+        console.log("entro qua");
         this.confirmForm();
       }
-      /*if (this.userName === '' || this.userAge === '' || this.information === '' || this.what === '' || this.learn === '' ) {
-        alert("Please compile the module!")
-        this.submitForm="";
-        if (this.submitForm) {
-          this.submitForm();
-        } else {
-          this.submitForm=false;
-        }
-      } else {
-        alert("Data saved successfully!")
-      }*/
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -128,10 +148,12 @@ export default {
 }
 h1 {
   font-size: 1.8rem;
-  color: #4CAF50;
+  color: #4caf50;
   margin-bottom: 20px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 h1:hover {
   color: #388e3c;
@@ -139,7 +161,7 @@ h1:hover {
 }
 button {
   margin-right: 15px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 10px 20px;
